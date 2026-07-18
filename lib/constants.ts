@@ -73,7 +73,7 @@ export const projects = [
     title: 'ShopGrad',
     description: 'E-commerce platform for educational products with shopping cart and payment integration',
     tech: ['Next.js', 'React', 'Stripe', 'PostgreSQL'],
-    liveUrl: 'https://shopgrad.vercel.app/',
+    liveUrl: 'https://shopgrad-79cc.vercel.app/',
     githubUrl: 'https://github.com/paul6244/shopgrad',
     image: 'shopgrad',
     vercelUrl: 'https://vercel.com/paul6244s-projects/shopgrad',
