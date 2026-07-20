@@ -88,6 +88,16 @@ export const projects = [
     image: 'attendance-system',
     vercelUrl: 'https://vercel.com/paul6244s-projects/v0-attendance-site',
   },
+  {
+    id: 4,
+    title: 'JB Chemist',
+    description: 'E-commerce platform for selling pharmacy drugs and medicine',
+    tech: ['Next.js', 'MongoDB'],
+    liveUrl: 'https://jb-chemist.vercel.app/',
+    githubUrl: 'https://github.com/paul6244/JB-chemist',
+    image: 'jb-chemist',
+    vercelUrl: 'https://vercel.com/paul6244s-projects/jb-chemist',
+  },
 ]
 
 // Trust badges
