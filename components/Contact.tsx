@@ -165,12 +165,7 @@ export default function Contact() {
                 value={contactInfo.phoneDisplay}
                 href={`tel:${contactInfo.phone}`}
               />
-              <ContactItem
-                icon={Globe}
-                label="Website"
-                value={contactInfo.website.replace('https://', '')}
-                href={contactInfo.website}
-              />
+             
             </div>
 
             {/* Trust badges */}
