@@ -98,6 +98,26 @@ export const projects = [
     image: 'jb-chemist',
     vercelUrl: 'https://vercel.com/paul6244s-projects/jb-chemist',
   },
+  {
+    id: 5,
+    title: 'Ashanti Gold',
+    description: 'Personal portfolio website showcasing my work and skills',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    liveUrl: 'https://paul6244.github.io/Ashanti-Gold/',
+    githubUrl: 'https://github.com/paul6244/Ashanti-Gold',
+    image: 'ashanti-gold',
+    vercelUrl: '',
+  },
+  {
+    id: 6,
+    title: 'Breakfast Selector',
+    description: 'A simple web app that helps you decide what to eat for breakfast',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    liveUrl: 'https://paul6244.github.io/Breakfast-Selector/',
+    githubUrl: 'https://github.com/paul6244/Breakfast-Selector',
+    image: 'breakfast-selector',
+    vercelUrl: '',
+  }
 ]
 
 // Trust badges
