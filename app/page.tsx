@@ -18,7 +18,6 @@ export default function Page() {
       <Services />
       <SkillsCloud />
       <Projects />
-      <Testimonials />
       <Contact />
       <Footer />
     </main>
