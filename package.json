@@ -20,6 +20,7 @@
     "react": "^19",
     "react-dom": "^19",
     "react-three-fiber": "^6.0.13",
+    "resend": "^6.18.0",
     "shadcn": "^4.8.0",
     "tailwind-merge": "^3.3.1",
     "three": "^0.185.1",

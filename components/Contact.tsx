@@ -14,6 +14,7 @@ export default function Contact() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -26,7 +27,7 @@ export default function Contact() {
     return emailRegex.test(email)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
 
@@ -51,11 +52,31 @@ export default function Contact() {
       return
     }
 
-    // Form is valid
-    console.log('Form submitted:', formData)
-    setSubmitted(true)
-    setFormData({ name: '', email: '', message: '' })
-    setTimeout(() => setSubmitted(false), 5000)
+    // Form is valid, submit to API
+    setIsSubmitting(true)
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
+      setSubmitted(true)
+      setFormData({ name: '', email: '', message: '' })
+      setTimeout(() => setSubmitted(false), 5000)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send message')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -122,9 +143,10 @@ export default function Contact() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="w-full px-4 md:px-6 py-2 md:py-3 bg-[#FF6B00] text-white font-semibold rounded-lg flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-[#FF6B00]/50 transition-all duration-300 text-sm md:text-base"
+                disabled={isSubmitting}
+                className="w-full px-4 md:px-6 py-2 md:py-3 bg-[#FF6B00] text-white font-semibold rounded-lg flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-[#FF6B00]/50 transition-all duration-300 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message <Send size={18} />
+                {isSubmitting ? 'Sending...' : 'Send Message'} <Send size={18} />
               </motion.button>
 
               {error && (
