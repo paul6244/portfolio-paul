@@ -42,17 +42,11 @@ export const techStack = [
   'Next.js',
   'TypeScript',
   'Node.js',
-  'Express',
   'PostgreSQL',
-  'MongoDB',
   'Tailwind CSS',
   'Framer Motion',
-  'Three.js',
   'REST APIs',
-  'GraphQL',
   'Git',
-  'Docker',
-  'AWS',
   'Vercel',
 ]
 
