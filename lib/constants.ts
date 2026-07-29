@@ -86,7 +86,7 @@ export const projects = [
     id: 4,
     title: 'JB Chemist',
     description: 'E-commerce platform for selling pharmacy drugs and medicine',
-    tech: ['Next.js', 'MongoDB'],
+    tech: ['Next.js', 'PostgreSQL'],
     liveUrl: 'https://jb-chemist.vercel.app/',
     githubUrl: 'https://github.com/paul6244/JB-chemist',
     image: 'jb-chemist',
@@ -95,7 +95,7 @@ export const projects = [
   {
     id: 5,
     title: 'Ashanti Gold',
-    description: 'Personal portfolio website showcasing my work and skills',
+    description: 'Personal copy of AshantiGold website showcasing my work and skills',
     tech: ['HTML', 'CSS', 'JavaScript'],
     liveUrl: 'https://paul6244.github.io/Ashanti-Gold/',
     githubUrl: 'https://github.com/paul6244/Ashanti-Gold',
