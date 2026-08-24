@@ -122,6 +122,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             </div>
           )}
           
+          
           {project.image === 'jb-chemist' && (
             <div className="absolute inset-0 bg-gradient-to-br from-red-600/30 to-pink-400/30">
               <motion.div
@@ -133,7 +134,21 @@ function ProjectCard({ project, index }: ProjectCardProps) {
               </motion.div>
             </div>
           )}
-          {!['procare-water', 'shopgrad', 'attendance-system', 'jb-chemist', 'breakfast-selector', 'ashanti-gold'].includes(project.image) && (
+          {project.image === 'optimum-consult-loans' && (
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 to-indigo-400/30">
+              <motion.div
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <div className="text-6xl">🏦</div>
+              </motion.div>
+            </div>
+          )}
+         
+         
+         
+          {!['procare-water', 'shopgrad', 'attendance-system', 'jb-chemist', 'breakfast-selector', 'ashanti-gold', 'optimum-consult-loans'].includes(project.image) && (
             <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B00]/30 to-orange-600/30">
               <motion.div
                 animate={{ y: [0, -10, 0] }}

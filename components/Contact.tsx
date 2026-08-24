@@ -4,7 +4,8 @@ import { motion } from 'framer-motion'
 import { containerVariants, fadeInUpVariants } from '@/lib/animations'
 import { contactInfo } from '@/lib/constants'
 import { Mail, Phone, Globe, Send } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import emailjs from '@emailjs/browser'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -15,6 +16,14 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  useEffect(() => {
+    // Initialize EmailJS with public key
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    if (publicKey) {
+      emailjs.init(publicKey)
+    }
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -52,27 +61,41 @@ export default function Contact() {
       return
     }
 
-    // Form is valid, submit to API
+    // Form is valid, submit using EmailJS
     setIsSubmitting(true)
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
 
-      const data = await response.json()
+      console.log('EmailJS Config:', { serviceId, templateId })
 
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message')
+      if (!serviceId || !templateId) {
+        throw new Error('EmailJS configuration is missing')
+      }
+
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          to_name: 'Paul',
+          from_name: formData.name,
+          from_email: formData.email,
+          reply_to: formData.email,
+          message: formData.message,
+        }
+      )
+
+      console.log('EmailJS Response:', response)
+
+      if (response.status !== 200) {
+        throw new Error(`Failed to send message: ${response.text}`)
       }
 
       setSubmitted(true)
       setFormData({ name: '', email: '', message: '' })
       setTimeout(() => setSubmitted(false), 5000)
     } catch (err) {
+      console.error('EmailJS Error:', err)
       setError(err instanceof Error ? err.message : 'Failed to send message')
     } finally {
       setIsSubmitting(false)

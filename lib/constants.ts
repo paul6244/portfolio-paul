@@ -111,7 +111,17 @@ export const projects = [
     githubUrl: 'https://github.com/paul6244/Breakfast-Selector',
     image: 'breakfast-selector',
     vercelUrl: '',
-  }
+  },
+  {
+    id: 7,
+    title: 'Optimum Consult Loans',
+    description: 'A web app for managing loans and repayments',
+    tech: ['Next.js', 'PostgreSQL'],
+    liveUrl: 'https://optimum-consult-loans.vercel.app/',
+    githubUrl: 'https://github.com/paul6244/optimum-consult-loans',
+    image: 'optimum-consult-loans',
+    vercelUrl: '',
+  },
 ]
 
 // Trust badges
