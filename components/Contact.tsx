@@ -96,7 +96,13 @@ export default function Contact() {
       setTimeout(() => setSubmitted(false), 5000)
     } catch (err) {
       console.error('EmailJS Error:', err)
-      setError(err instanceof Error ? err.message : 'Failed to send message')
+      console.error('Error type:', typeof err)
+      console.error('Error keys:', err ? Object.keys(err) : 'null')
+      console.error('Error text:', err?.text || 'no text')
+      console.error('Error status:', err?.status || 'no status')
+      // EmailJS returns an object with status and text properties
+      const errorMessage = err?.text || err?.message || 'Failed to send message'
+      setError(errorMessage)
     } finally {
       setIsSubmitting(false)
     }
