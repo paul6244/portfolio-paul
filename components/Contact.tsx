@@ -11,6 +11,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
@@ -80,8 +81,10 @@ export default function Contact() {
           to_name: 'Paul',
           from_name: formData.name,
           from_email: formData.email,
+          from_phone: formData.phone,
           reply_to: formData.email,
           message: formData.message,
+          time: new Date().toLocaleString(),
         }
       )
 
@@ -92,7 +95,7 @@ export default function Contact() {
       }
 
       setSubmitted(true)
-      setFormData({ name: '', email: '', message: '' })
+      setFormData({ name: '', email: '', phone: '', message: '' })
       setTimeout(() => setSubmitted(false), 5000)
     } catch (err) {
       console.error('EmailJS Error:', err)
@@ -152,6 +155,18 @@ export default function Contact() {
                   placeholder="your@email.com"
                   className="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-[#B0B8C1]/50 focus:border-[#FF6B00] focus:outline-none transition-colors duration-300 text-sm md:text-base"
                   required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold mb-2 md:mb-3">Phone</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Your phone number"
+                  className="w-full px-3 md:px-4 py-2 md:py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-[#B0B8C1]/50 focus:border-[#FF6B00] focus:outline-none transition-colors duration-300 text-sm md:text-base"
                 />
               </div>
 
